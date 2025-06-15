@@ -3,12 +3,9 @@ import React from 'react';
 import { Platform } from 'react-native';
 
 import { HapticTab } from '@/components/HapticTab';
-import { IconSymbol } from '@/components/ui/IconSymbol';
 import TabBarBackground from '@/components/ui/TabBarBackground';
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
-import Ionicons from '@expo/vector-icons/Ionicons';
-import FontAwesome from '@expo/vector-icons/FontAwesome';
 import AntDesign from '@expo/vector-icons/AntDesign';
 
 export default function TabLayout() {
@@ -26,7 +23,10 @@ export default function TabLayout() {
             // Use a transparent background on iOS to show the blur effect
             position: 'absolute',
           },
-          default: {},
+          default: {
+              border: 'solid',
+              borderColor: 'black'
+          },
         }),
       }}>
       <Tabs.Screen
@@ -37,16 +37,23 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="program"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <AntDesign name="file1" size={28} color={color} />,
+          title: 'Program',
+          tabBarIcon: ({ color }) => <AntDesign name="calendar" size={28} color={color} />
         }}
       />
       <Tabs.Screen
-        name="settings"
+        name="tracking"
         options={{
-          title: 'Settings',
+          title: 'Tracking',
+          tabBarIcon: ({ color }) => <AntDesign name="barschart" size={28} color={color} />,
+        }}
+      />
+        <Tabs.Screen
+        name="coach"
+        options={{
+          title: 'Coach',
           tabBarIcon: ({ color }) => <AntDesign name="setting" size={28} color={color} />,
         }}
       />
