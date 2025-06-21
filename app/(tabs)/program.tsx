@@ -1,21 +1,16 @@
-import { useHeaderHeight } from '@react-navigation/elements';
-import { Icon } from '@roninoss/icons';
-import { FlashList } from '@shopify/flash-list';
-import { cssInterop } from 'nativewind';
+import {FlashList} from '@shopify/flash-list';
+import {cssInterop} from 'nativewind';
 import * as React from 'react';
 import {
-    useWindowDimensions,
     View,
-    Platform, ScrollView, Dimensions
+    Dimensions,
 } from 'react-native';
-import {SafeAreaProvider, useSafeAreaInsets} from 'react-native-safe-area-context';
-import { Text } from '@/components/nativewindui/Text';
-import { useColorScheme } from '@/lib/useColorScheme';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/nativewindui/Avatar';
+import {Text} from '@/components/nativewindui/Text';
 import {Button} from "@/components/nativewindui/Button";
-import EvilIcons from '@expo/vector-icons/EvilIcons';
-import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
-import SimpleLineIcons from '@expo/vector-icons/SimpleLineIcons';
+import AntDesign from '@expo/vector-icons/AntDesign';
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import EvilIcons from "@expo/vector-icons/EvilIcons";
+import SimpleLineIcons from "@expo/vector-icons/SimpleLineIcons";
 
 cssInterop(FlashList, {
     className: 'style',
@@ -39,134 +34,181 @@ export default function Screen() {
 }
 
 function ListEmptyComponent() {
-    const { colors } = useColorScheme();
-    const { height: SCREEN_HEIGHT } = Dimensions.get('window');
+    const {height: SCREEN_HEIGHT} = Dimensions.get('window');
 
     return (
-            <View className="px-4 py-6 min-h-0" style={{ minHeight: SCREEN_HEIGHT }}>
-                <View className="flex-row items-center justify-between mb-6">
-                    <View className="flex-row items-center">
-                        <Avatar className="w-12 h-12" alt="NativewindUI Avatar">
-                            <AvatarImage
-                                source={{
-                                    uri: 'https://pbs.twimg.com/profile_images/1782428433898708992/1voyv4_A_400x400.jpg',
-                                }}
-                            />
-                            <AvatarFallback>
-                                <Text className="text-foreground">NUI</Text>
-                            </AvatarFallback>
-                        </Avatar>
-                        <View className="ml-3">
-                            <Text className="text-lg" variant="heading">Sébastien Parrat</Text>
-                            <Text className="text-xs text-gray-500">Intermediate · Week 6</Text>
-                        </View>
-                    </View>
-                    <View>
-                        <Button variant="plain" size="icon">
-                            <Icon
-                                name="bell"
-                                color={Platform.OS === 'ios' ? colors.primary : colors.foreground}
-                                size={21}
-                            />
-                        </Button>
-                    </View>
+        <View className="px-4 py-6 min-h-0" style={{minHeight: SCREEN_HEIGHT}}>
+            <View className="flex-row items-center justify-between mb-6">
+                <Text className="text-xl font-bold" variant="heading">My Program</Text>
+                <Text className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm">
+                    Upper/Lower Split
+                </Text>
+            </View>
+            <View className="flex-row items-center justify-between mb-6">
+                <Button className="w-8 h-8 flex-row items-center justify-center bg-white rounded-full shadow-sm">
+                    <AntDesign name="leftcircleo" size={24} color="black"/>
+                </Button>
+                <View className="flex items-center">
+                    <Text className="font-medium">Week 6</Text>
                 </View>
-
-                <View className="flex space-x-4 mb-6">
-                    <Text className="font-bold text-lg mb-4">Today's Workout</Text>
-                    <View className="bg-white rounded-xl p-4 shadow-sm mb-4 border-l-4 border-blue-500">
-                        <View className="flex-row justify-between items-center mb-2">
-                            <Text className="font-semibold text-lg">Upper Body Strength</Text>
-                            <SimpleLineIcons className="text-gray-400" name="arrow-right" size={20} color="black" />
-                        </View>
-                        <View className="flex-row items-center text-sm text-gray-500 mb-3">
-                            <EvilIcons className="mr-1" name="clock" size={24} color="black" />
-                            <Text className="mr-4">45 min</Text>
-                            <MaterialCommunityIcons className="mr-1" name="dumbbell" size={20} color="black" />
-                            <Text>7 exercises</Text>
-                        </View>
-                        <View className="flex-row justify-between items-center">
-                            <Text className="text-xs px-2 py-1 rounded-full bg-yellow-100 text-yellow-700">Medium</Text>
-                            <Button className="text-xs bg-blue-600 text-white px-3 py-1 rounded-full">
-                                <Text>Start</Text>
-                            </Button>
-                        </View>
-                    </View>
+                <Button className="w-8 h-8 flex-row items-center justify-center bg-white rounded-full shadow-sm">
+                    <AntDesign name="rightcircleo" size={24} color="black"/>
+                </Button>
+            </View>
+            <View className="bg-white rounded-xl p-4 shadow-sm mb-6">
+                <View className="flex-row mb-4">
+                    <Text className="flex-1 h-8 align-middle text-center text-sm font-medium">
+                        M
+                    </Text>
+                    <Text className="flex-1 h-8 align-middle text-center text-sm font-medium">
+                        T
+                    </Text>
+                    <Text className="flex-1 h-8 align-middle text-center text-sm font-medium">
+                        W
+                    </Text>
+                    <Text
+                        className="flex-1 h-8 align-middle text-center text-sm font-medium bg-blue-100 text-blue-700 rounded-full">
+                        T
+                    </Text>
+                    <Text className="flex-1 h-8 align-middle text-center text-sm font-medium">
+                        F
+                    </Text>
+                    <Text className="flex-1 h-8 align-middle text-center text-sm font-medium">
+                        S
+                    </Text>
+                    <Text className="flex-1 h-8 align-middle text-center text-sm font-medium">
+                        S
+                    </Text>
                 </View>
-
-                <View className="flex space-x-4 mb-4">
-                    <Text className="font-bold text-lg mb-4">Weekly performance</Text>
-                    <View className="bg-white rounded-xl p-4 shadow-sm mb-4">
-                        <Text className="font-semibold mb-4">Progress Overview</Text>
-                        <View className="flex-row justify-between items-end h-40 mb-2" >
-                            <View className="flex flex-col items-center flex-1">
-                                <View className="w-5 bg-blue-500 rounded-t-md" style={{height: '65%' }}></View>
-                            </View>
-                            <View className="flex flex-col items-center flex-1">
-                                <View className="w-5 bg-blue-500 rounded-t-md"style={{height: '70%' }}></View>
-                            </View>
-                            <View className="flex flex-col items-center flex-1">
-                                <View className="w-5 bg-blue-500 rounded-t-md"style={{height: '68%' }}></View>
-                            </View>
-                            <View className="flex flex-col items-center flex-1">
-                                <View className="w-5 bg-blue-500 rounded-t-md" style={{height: '75%' }}></View>
-                            </View>
-                            <View className="flex flex-col items-center flex-1">
-                                <View className="w-5 bg-blue-500 rounded-t-md"style={{height: '80%' }}></View>
-                            </View>
-                            <View className="flex flex-col items-center flex-1">
-                                <View className="w-5 bg-blue-500 rounded-t-md" style={{height: '78%' }}></View>
-                            </View>
-                            <View className="flex flex-col items-center flex-1">
-                                <View className="w-5 bg-blue-500 rounded-t-md" style={{height: '85%' }}></View>
-                            </View>
-                        </View>
-                        <View className="flex-row justify-between text-xs text-gray-500">
-                            <Text>Mon</Text>
-                            <Text>Tue</Text>
-                            <Text>Wed</Text>
-                            <Text>Thu</Text>
-                            <Text>Fri</Text>
-                            <Text>Sat</Text>
-                            <Text>Sun</Text>
-                        </View>
-                    </View>
-                </View>
-
-                <View className="flex space-x-4">
-                    <Text className="font-bold text-lg mb-4">Recent Workouts performance</Text>
-                    <View className="bg-white rounded-xl p-4 shadow-sm mb-4 border-l-4 border-green-500">
-                        <View className="flex-row justify-between items-center mb-2">
-                            <Text className="font-semibold text-lg">Lower Body Focus</Text>
-                            <SimpleLineIcons className="text-gray-400" name="arrow-right" size={20} color="black" />
-                        </View>
-                        <View className="flex-row items-center text-sm text-gray-500 mb-3">
-                            <EvilIcons className="mr-1" name="clock" size={24} color="black" />
-                            <Text className="mr-4">50 min</Text>
-                            <MaterialCommunityIcons className="mr-1" name="dumbbell" size={20} color="black" />
-                            <Text>6 exercises</Text></View>
-                        <View className="flex-row justify-between items-center">
-                            <Text className="text-xs px-2 py-1 rounded-full bg-red-100 text-red-700">Hard</Text>
-                            <Text className="text-xs text-green-600 font-medium">Completed</Text>
-                        </View>
-                    </View>
-                    <View className="bg-white rounded-xl p-4 shadow-sm mb-4 border-l-4 border-green-500">
-                        <View className="flex-row justify-between items-center mb-2">
-                            <Text className="font-semibold text-lg">Lower Body Focus</Text>
-                            <SimpleLineIcons className="text-gray-400" name="arrow-right" size={20} color="black" />
-                        </View>
-                        <View className="flex-row items-center text-sm text-gray-500 mb-3">
-                            <EvilIcons className="mr-1" name="clock" size={24} color="black" />
-                            <Text className="mr-4">50 min</Text>
-                            <MaterialCommunityIcons className="mr-1" name="dumbbell" size={20} color="black" />
-                            <Text>6 exercises</Text></View>
-                        <View className="flex-row justify-between items-center">
-                            <Text className="text-xs px-2 py-1 rounded-full bg-red-100 text-red-700">Hard</Text>
-                            <Text className="text-xs text-green-600 font-medium">Completed</Text>
-                        </View>
-                    </View>
+                <View className="flex-row">
+                    <Text className="flex-1 text-xs text-center text-gray-500">
+                        Rest
+                    </Text>
+                    <Text className="flex-1 text-xs text-center text-gray-500">
+                        Upper
+                    </Text>
+                    <Text className="flex-1 text-xs text-center text-gray-500">
+                        Lower
+                    </Text>
+                    <Text className="flex-1 text-xs text-center text-gray-500">
+                        Upper
+                    </Text>
+                    <Text className="flex-1 text-xs text-center text-gray-500">
+                        Lower
+                    </Text>
+                    <Text className="flex-1 text-xs text-center text-gray-500">
+                        Rest
+                    </Text>
+                    <Text className="flex-1 text-xs text-center text-gray-500">
+                        Active
+                    </Text>
                 </View>
             </View>
+            <Text className="font-bold text-lg mb-4" data-id="element-265">Thursday - Upper Body</Text>
+            <View className="bg-white rounded-xl p-4 shadow-sm mb-4 border-l-4 border-blue-500" data-id="element-100">
+                <View className="flex-row justify-between items-center mb-2" data-id="element-101">
+                    <Text className="font-semibold text-lg" data-id="element-102">Upper Body Strength</Text>
+                    <SimpleLineIcons className="text-gray-400" name="arrow-right" size={20} color="black"/>
+                </View>
+                <View className="flex-row items-center text-sm text-gray-500 mb-3" data-id="element-104">
+                    <EvilIcons className="mr-1" name="clock" size={24} color="black"/>
+                    <Text className="mr-4" data-id="element-106">45 min</Text>
+                    <MaterialCommunityIcons className="mr-1" name="dumbbell" size={20} color="black"/>
+                    <Text data-id="element-108">7 exercises</Text></View>
+                <View className="flex-row justify-between items-center" data-id="element-109">
+                    <Text
+                        className="text-xs px-2 py-1 rounded-full bg-yellow-100 text-yellow-700"
+                        data-id="element-110">Medium</Text>
+                    <Button className="text-xs bg-blue-600 text-white px-3 py-1 rounded-full"
+                            data-id="element-112">
+                        <Text>Start</Text>
+                    </Button>
+                </View>
+            </View>
+            <View className="bg-white rounded-xl p-4 shadow-sm mt-4" data-id="element-267">
+                <Text className="font-semibold mb-3" data-id="element-268">Exercises</Text>
+                <View className="py-3 border-b border-gray-100 last:border-0" data-id="element-269">
+                    <View className="flex-row justify-between" data-id="element-270">
+                        <View data-id="element-271">
+                            <Text className="font-medium" data-id="element-272">Bench Press</Text>
+                            <Text className="text-sm text-gray-500" data-id="element-273">4 sets × 8 reps</Text>
+                        </View>
+                        <Text className="text-blue-600 text-sm" data-id="element-274">
+                            Details
+                        </Text>
+                    </View>
+                </View>
+                <View className="py-3 border-b border-gray-100 last:border-0" data-id="element-269">
+                    <View className="flex-row justify-between" data-id="element-270">
+                        <View data-id="element-271">
+                            <Text className="font-medium" data-id="element-272">Bent Over Rows</Text>
+                            <Text className="text-sm text-gray-500" data-id="element-273">4 sets × 10 reps</Text>
+                        </View>
+                        <Text className="text-blue-600 text-sm" data-id="element-274">
+                            Details
+                        </Text>
+                    </View>
+                </View>
+                <View className="py-3 border-b border-gray-100 last:border-0" data-id="element-269">
+                    <View className="flex-row justify-between" data-id="element-270">
+                        <View data-id="element-271">
+                            <Text className="font-medium" data-id="element-272">Overhead Press</Text>
+                            <Text className="text-sm text-gray-500" data-id="element-273">3 sets × 10 reps</Text>
+                        </View>
+                         <Text className="text-blue-600 text-sm" data-id="element-274">
+                            Details
+                        </Text>
+                    </View>
+                </View>
+                <View className="py-3 border-b border-gray-100 last:border-0" data-id="element-269">
+                    <View className="flex-row justify-between" data-id="element-270">
+                        <View data-id="element-271">
+                            <Text className="font-medium" data-id="element-272">Lat Pulldowns</Text>
+                            <Text className="text-sm text-gray-500" data-id="element-273">3 sets × 12 reps</Text>
+                        </View>
+                         <Text className="text-blue-600 text-sm" data-id="element-274">
+                            Details
+                        </Text>
+                    </View>
+                </View>
+                <View className="py-3 border-b border-gray-100 last:border-0" data-id="element-269">
+                    <View className="flex-row justify-between" data-id="element-270">
+                        <View data-id="element-271">
+                            <Text className="font-medium" data-id="element-272">Bicep Curls</Text>
+                            <Text className="text-sm text-gray-500" data-id="element-273">3 sets × 12 reps</Text>
+                        </View>
+                         <Text className="text-blue-600 text-sm" data-id="element-274">
+                            Details
+                        </Text>
+                    </View>
+                </View>
+                <View className="py-3 border-b border-gray-100 last:border-0" data-id="element-269">
+                    <View className="flex-row justify-between" data-id="element-270">
+                        <View data-id="element-271">
+                            <Text className="font-medium" data-id="element-272">Tricep Pushdowns</Text>
+                            <Text className="text-sm text-gray-500" data-id="element-273">3 sets × 12 reps</Text>
+                        </View>
+                         <Text className="text-blue-600 text-sm" data-id="element-274">
+                            Details
+                        </Text>
+                    </View>
+                </View>
+                <View className="py-3 border-b border-gray-100 last:border-0" data-id="element-269">
+                    <View className="flex-row justify-between" data-id="element-270">
+                        <View data-id="element-271">
+                            <Text className="font-medium" data-id="element-272">Face Pulls</Text>
+                            <Text className="text-sm text-gray-500" data-id="element-273">3 sets × 15 reps</Text>
+                        </View>
+                         <Text className="text-blue-600 text-sm" data-id="element-274">
+                            Details
+                        </Text>
+                    </View>
+                </View>
+                <Text className="w-full mt-3 text-center text-blue-600 text-sm font-medium" data-id="element-275">
+                    Edit Workout
+                </Text>
+            </View>
+        </View>
     );
 }
 
